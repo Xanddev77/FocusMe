@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FocusMe — Sites bloqueados</title>
+    <link rel="stylesheet" href="ui.css">
+    <link rel="stylesheet" href="options.css">
+</head>
+<body>
+    <header class="topo">
+        <div class="topo-lente lente-marca" style="--lente-tam: 300px" aria-hidden="true"></div>
+        <img src="assets/logo.png" alt="FocusMe" class="logo">
+        <div class="topo-texto">
+            <h1>Sites bloqueados durante o foco</h1>
+            <p>Enquanto o Pomodoro do FocusMe estiver em foco, estes sites ficam fora do ar. Nas pausas, tudo é liberado.</p>
+        </div>
+    </header>
+
+    <main>
+        <section class="cartao">
+            <div class="cartao-topo">
+                <h2>Sugestões</h2>
+                <button id="btnRestaurar" class="link">Restaurar padrão</button>
+            </div>
+            <div class="presets" id="presets"></div>
+        </section>
+
+        <section class="cartao">
+            <h2>Seus próprios sites</h2>
+            <form id="formAdd" class="linha-add" autocomplete="off">
+                <input id="novoSite" type="text" placeholder="ex.: exemplo.com.br" aria-label="Adicionar site">
+                <button type="submit" class="primario">Adicionar</button>
+            </form>
+            <p class="erro" id="erroAdd" role="alert"></p>
+            <div class="chips" id="personalizados"></div>
+        </section>
+
+        <section class="cartao">
+            <h2>Onde o FocusMe está hospedado?</h2>
+            <p class="ajuda">A extensão já reconhece o FocusMe em <b>localhost</b>, <b>github.io</b>, <b>netlify.app</b>, <b>vercel.app</b>, <b>web.app</b>, <b>pages.dev</b> e outros. Se o seu site usa um domínio próprio, autorize-o aqui.</p>
+            <form id="formOrigem" class="linha-add" autocomplete="off">
+                <input id="appUrl" type="text" placeholder="https://meusite.com.br/focusme" aria-label="Endereço do FocusMe">
+                <button type="submit" class="primario">Autorizar</button>
+            </form>
+            <p class="erro" id="erroOrigem" role="alert"></p>
+            <div class="chips" id="origens"></div>
+            <p class="ajuda pequena">Abrindo o arquivo direto do computador (<b>file://</b>)? Em <b>chrome://extensions</b>, abra os detalhes desta extensão e ligue <b>“Permitir acesso a URLs de arquivo”</b>.</p>
+        </section>
+    </main>
+    <script src="options.js"></script>
+</body>
+</html>

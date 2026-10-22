@@ -1,0 +1,666 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#0c5c7e">
+    <meta name="focusme-app" content="1">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%230c5c7e'/%3E%3Ccircle cx='32' cy='32' r='15' fill='none' stroke='white' stroke-width='6'/%3E%3Ccircle cx='32' cy='32' r='5' fill='white'/%3E%3C/svg%3E">
+    <title>FocusMe - Gerenciador de Tarefas e Pomodoro</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&family=Montserrat:wght@500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <!-- ===================== LOGIN / CADASTRO ===================== -->
+    <div id="telaLogin" class="auth">
+        <section class="auth-hero">
+            <div class="hero-grade" aria-hidden="true"></div>
+            <div class="hero-bokeh" aria-hidden="true"><span style="--x:6%;--y:14%;--s:170px;--b:18px;--o:.5;--p:.7;--t:21s"></span><span style="--x:30%;--y:6%;--s:90px;--b:10px;--o:.42;--p:.4;--t:17s"></span><span style="--x:62%;--y:12%;--s:220px;--b:22px;--o:.34;--p:.9;--t:25s"></span><span style="--x:78%;--y:40%;--s:110px;--b:12px;--o:.5;--p:.5;--t:19s"></span><span style="--x:12%;--y:46%;--s:130px;--b:14px;--o:.38;--p:.8;--t:23s"></span><span style="--x:46%;--y:38%;--s:70px;--b:8px;--o:.5;--p:.3;--t:16s"></span><span style="--x:70%;--y:68%;--s:190px;--b:20px;--o:.3;--p:.6;--t:27s"></span><span style="--x:22%;--y:74%;--s:100px;--b:11px;--o:.46;--p:.5;--t:20s"></span><span style="--x:52%;--y:84%;--s:150px;--b:16px;--o:.36;--p:.8;--t:24s"></span></div>
+            <div class="hero-lente" aria-hidden="true"></div>
+            <img src="img/logo_focusME_1.PNG" alt="FocusMe" class="hero-logo">
+
+            <div class="hero-texto">
+                <span class="canto c1" aria-hidden="true"></span><span class="canto c2" aria-hidden="true"></span><span class="canto c3" aria-hidden="true"></span><span class="canto c4" aria-hidden="true"></span>
+                <span class="hero-af" aria-hidden="true"><i></i>Foco travado</span>
+                <h1 class="hero-titulo">Foque no que importa.</h1>
+                <p class="hero-sub">Organize suas tarefas, use o Pomodoro e acompanhe sua evolução semana a semana.</p>
+            </div>
+
+            <div class="hero-previa" aria-hidden="true">
+                <div class="mock-card mock-um">
+                    <div class="mock-linha">
+                        <strong>Estudar Banco de Dados</strong>
+                        <span class="mock-chip">Alta</span>
+                    </div>
+                    <div class="mock-barra"><i></i></div>
+                    <small>2 de 4 subtarefas &middot; hoje, 18:00</small>
+                </div>
+                <div class="mock-card mock-dois">
+                    <div class="mock-linha">
+                        <strong>Ler capítulo 4</strong>
+                        <span class="mock-chip baixa">Baixa</span>
+                    </div>
+                    <small>Concluída &middot; 25 de out</small>
+                </div>
+                <div class="mock-timer">
+                    <svg viewBox="0 0 48 48"><circle class="t" cx="24" cy="24" r="19"/><circle class="p" cx="24" cy="24" r="19"/></svg>
+                    <div><b>24:59</b><span>Foco</span></div>
+                </div>
+            </div>
+        </section>
+
+        <main class="auth-painel">
+            <div class="auth-card">
+                <div class="auth-abas" role="tablist" aria-label="Acesso">
+                    <button type="button" role="tab" id="abaEntrar" class="ativo" aria-selected="true" data-aba="entrar">Entrar</button>
+                    <button type="button" role="tab" id="abaCadastrar" aria-selected="false" data-aba="cadastrar">Criar conta</button>
+                </div>
+
+                <form id="formLogin" novalidate>
+                    <h2 class="auth-titulo">Que bom ter você de volta</h2>
+                    <p class="auth-sub">Entre para continuar de onde parou.</p>
+                    <div class="campo">
+                    <label for="loginUsuario">E-mail ou usuário</label>
+                    <div class="campo-caixa"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 3.6-7 8-7s8 3 8 7"/></svg><input type="text" id="loginUsuario" placeholder="seuemail@exemplo.com" autocomplete="username" ></div>
+                    <p class="campo-erro" id="loginUsuarioErro" role="alert"></p>
+                </div>
+                    <div class="campo">
+                    <label for="loginSenha">Senha</label>
+                    <div class="campo-caixa"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="10" width="16" height="11" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg><input type="password" id="loginSenha" placeholder="Sua senha" autocomplete="current-password" ><button type="button" class="btn-olho" data-alvo="loginSenha" aria-label="Mostrar senha"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12Z"/><circle cx="12" cy="12" r="3"/></svg></button></div>
+                    <p class="campo-erro" id="loginSenhaErro" role="alert"></p>
+                </div>
+                    <label class="auth-check"><input type="checkbox" id="loginLembrar" checked><span>Manter conectado neste aparelho</span></label>
+                    <p class="auth-erro" id="loginErro" role="alert"></p>
+                    <button type="submit" class="btn-auth">Entrar</button>
+                    <p class="auth-troca">Ainda não tem conta? <button type="button" class="link-btn" data-aba="cadastrar">Criar conta</button></p>
+                </form>
+
+                <form id="formCadastro" class="oculto" novalidate>
+                    <h2 class="auth-titulo">Crie sua conta</h2>
+                    <p class="auth-sub">Leva menos de um minuto. Suas tarefas ficam salvas neste navegador.</p>
+                    <div class="campo">
+                    <label for="cadNome">Nome</label>
+                    <div class="campo-caixa"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 3.6-7 8-7s8 3 8 7"/></svg><input type="text" id="cadNome" placeholder="Como devemos te chamar?" autocomplete="name" maxlength="40"></div>
+                    <p class="campo-erro" id="cadNomeErro" role="alert"></p>
+                </div>
+                    <div class="auth-duo">
+                    <div class="campo">
+                    <label for="cadUsuario">Usuário</label>
+                    <div class="campo-caixa"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M16 8v5a3 3 0 0 0 6 0v-1a10 10 0 1 0-4 8"/></svg><input type="text" id="cadUsuario" placeholder="seu.usuario" autocomplete="username" maxlength="20"></div>
+                    <p class="campo-erro" id="cadUsuarioErro" role="alert"></p>
+                </div>
+                    <div class="campo">
+                    <label for="cadEmail">E-mail</label>
+                    <div class="campo-caixa"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg><input type="text" id="cadEmail" placeholder="voce@exemplo.com" autocomplete="email" ></div>
+                    <p class="campo-erro" id="cadEmailErro" role="alert"></p>
+                </div>
+                    </div>
+                    <div class="campo">
+                    <label for="cadSenha">Senha</label>
+                    <div class="campo-caixa"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="10" width="16" height="11" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg><input type="password" id="cadSenha" placeholder="Mínimo de 6 caracteres" autocomplete="new-password" ><button type="button" class="btn-olho" data-alvo="cadSenha" aria-label="Mostrar senha"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12Z"/><circle cx="12" cy="12" r="3"/></svg></button></div>
+                    <p class="campo-erro" id="cadSenhaErro" role="alert"></p>
+                </div>
+                    <div class="forca" id="forcaSenha" aria-hidden="true"><span></span><span></span><span></span><span></span><em id="forcaTexto"></em></div>
+                    <div class="campo">
+                    <label for="cadConfirmar">Confirmar senha</label>
+                    <div class="campo-caixa"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="10" width="16" height="11" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg><input type="password" id="cadConfirmar" placeholder="Repita a senha" autocomplete="new-password" ><button type="button" class="btn-olho" data-alvo="cadConfirmar" aria-label="Mostrar senha"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12Z"/><circle cx="12" cy="12" r="3"/></svg></button></div>
+                    <p class="campo-erro" id="cadConfirmarErro" role="alert"></p>
+                </div>
+                    <button type="submit" class="btn-auth">Criar conta e entrar</button>
+                    <p class="auth-troca">Já tem conta? <button type="button" class="link-btn" data-aba="entrar">Entrar</button></p>
+                </form>
+            </div>
+        </main>
+    </div>
+
+    <!-- ===================== APLICATIVO ===================== -->
+    <div id="telaApp" class="app-container oculto">
+
+        <div class="mobile-navbar">
+            <button id="btnToggleMenu" class="btn-menu-toggle" aria-label="Abrir menu"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+            <img src="img/logo_focusME_1.PNG" alt="FocusMe" class="mobile-logo-img">
+            <button type="button" id="btnPerfilMobile" class="avatar avatar-nav" aria-label="Abrir minha conta">?</button>
+        </div>
+
+        <div id="menuOverlay" class="menu-overlay oculto"></div>
+
+        <aside id="sidebar" class="sidebar">
+            <div class="sidebar-header">
+                <img src="img/logo_focusME_1.PNG" alt="FocusMe" class="sidebar-logo-img">
+                <button id="btnFecharMenu" class="btn-menu-fechar" aria-label="Fechar menu"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg></button>
+            </div>
+            <div class="sidebar-lente lente-marca" aria-hidden="true"></div>
+            <button type="button" id="btnPaleta" class="sidebar-busca" aria-label="Abrir a paleta de comandos"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg><span>Buscar…</span><kbd id="atalhoPaleta">Ctrl K</kbd></button>
+            <ul id="menuFiltros">
+                <li data-filtro="todas" class="ativo" tabindex="0"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 6h13M8 12h13M8 18h13M3 6h.01M3 12h.01M3 18h.01"/></svg><span>Todas as Tarefas</span></li>
+                <li data-filtro="pendentes" tabindex="0"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><span>Pendentes</span><em class="nav-badge oculto" id="badgePendentes">0</em></li>
+                <li data-filtro="concluidas" tabindex="0"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="m8.5 12.5 2.5 2.5 4.5-5"/></svg><span>Concluídas</span></li>
+                <li data-filtro="pomodoro" tabindex="0"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="13.5" r="7.5"/><path d="M12 9.5v4l2.2 1.6M9.5 2.5h5"/></svg><span>Pomodoro</span></li>
+                <li data-filtro="estatisticas" tabindex="0"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20V11M10 20V4M16 20v-6M22 20H2"/></svg><span>Progresso &amp; Streak</span></li>
+            </ul>
+
+            <div class="sidebar-rodape">
+                <button id="btnModoNoturno" class="btn-tema"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 14.5A8.5 8.5 0 0 1 9.5 4a8.5 8.5 0 1 0 10.5 10.5Z"/></svg><span>Modo Noturno</span></button>
+                <div class="sidebar-usuario">
+                    <button type="button" id="btnPerfil" class="usuario-link" aria-label="Abrir minha conta" title="Minha conta">
+                        <span class="avatar" id="avatarUsuario">?</span>
+                        <span class="usuario-info">
+                            <strong id="nomeUsuario">Visitante</strong>
+                            <span id="usuarioArroba"></span>
+                        </span>
+                    </button>
+                    <button id="btnSair" class="btn-sair" aria-label="Sair da conta" title="Sair"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4M16 17l5-5-5-5M21 12H9"/></svg></button>
+                </div>
+            </div>
+        </aside>
+
+        <div class="main-content">
+
+            <header class="topo">
+                <div class="topo-titulo">
+                    <p id="saudacao" class="saudacao"></p>
+                    <h1 id="tituloFiltroAtual">Todas as Tarefas</h1>
+                    <div id="resumoHoje" class="resumo-hoje"></div>
+                </div>
+                <div class="app-header">
+                    <select id="ordenacaoTarefas" class="select-ordenacao" aria-label="Ordenar tarefas">
+                        <option value="padrao">Ordenar por...</option>
+                        <option value="criacao-novo">Criação: Mais recentes</option>
+                        <option value="criacao-antigo">Criação: Mais antigas</option>
+                        <option value="prio-alta">Prioridade: Alta para Baixa</option>
+                        <option value="prio-baixa">Prioridade: Baixa para Alta</option>
+                        <option value="data-perto">Prazo: Mais próximo</option>
+                        <option value="data-longe">Prazo: Mais distante</option>
+                    </select>
+                    <button id="btnNovaTarefa" class="btn-primary"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg><span>Nova Tarefa</span></button>
+                </div>
+            </header>
+
+            <section id="barraProgressoDiaria" class="progress-container">
+                <div class="progress-lente lente-marca" aria-hidden="true"></div>
+                <div class="progress-numero"><span id="progressPercentage">0%</span></div>
+                <div class="progress-corpo">
+                    <div class="progress-text"><span>Progresso do Dia</span><em id="progressMensagem"></em></div>
+                    <div class="progress-bar-bg"><div id="progressBarFill" class="progress-bar-fill"></div></div>
+                    <div id="progressCount" class="progress-count">0 de 0 tarefas concluídas</div>
+                </div>
+            </section>
+
+            <form id="quickAdd" class="quick-add" autocomplete="off">
+                <div class="quick-campo">
+                    <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>
+                    <input type="text" id="quickAddInput" maxlength="140" placeholder="Adicione rápido: estudar BD amanhã 18h !alta" aria-label="Adicionar tarefa rápida">
+                    <kbd class="quick-dica" title="Atalho: tecla /">/</kbd>
+                </div>
+                <div id="quickPrevia" class="quick-previa" aria-live="polite"></div>
+            </form>
+
+            <ul id="listaTarefas" class="task-list"></ul>
+
+            <div id="containerPomodoro" class="oculto">
+                <div class="pomodoro-box estado-foco" id="pomodoroBoxCard">
+
+                    <button type="button" id="btnTelaCheia" class="btn-tela-cheia" aria-label="Abrir o modo foco em tela cheia" title="Modo foco em tela cheia (F)"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5"/></svg></button>
+
+
+                    <div class="pomodoro-anel">
+                        <div class="anel-lente" aria-hidden="true"></div>
+                        <svg viewBox="-14 -14 228 228" aria-hidden="true">
+                            <g class="anel-marcas" id="pomodoroMarcas"><line class="on maior" x1="201.00" y1="100.00" x2="210.00" y2="100.00"/><line class="on" x1="200.45" y1="110.56" x2="205.42" y2="111.08"/><line class="on" x1="198.79" y1="121.00" x2="203.68" y2="122.04"/><line class="on" x1="196.06" y1="131.21" x2="200.81" y2="132.76"/><line class="on" x1="192.27" y1="141.08" x2="196.84" y2="143.11"/><line class="on maior" x1="187.47" y1="150.50" x2="195.26" y2="155.00"/><line class="on" x1="181.71" y1="159.37" x2="185.76" y2="162.31"/><line class="on" x1="175.06" y1="167.58" x2="178.77" y2="170.93"/><line class="on" x1="167.58" y1="175.06" x2="170.93" y2="178.77"/><line class="on" x1="159.37" y1="181.71" x2="162.31" y2="185.76"/><line class="on maior" x1="150.50" y1="187.47" x2="155.00" y2="195.26"/><line class="on" x1="141.08" y1="192.27" x2="143.11" y2="196.84"/><line class="on" x1="131.21" y1="196.06" x2="132.76" y2="200.81"/><line class="on" x1="121.00" y1="198.79" x2="122.04" y2="203.68"/><line class="on" x1="110.56" y1="200.45" x2="111.08" y2="205.42"/><line class="on maior" x1="100.00" y1="201.00" x2="100.00" y2="210.00"/><line class="on" x1="89.44" y1="200.45" x2="88.92" y2="205.42"/><line class="on" x1="79.00" y1="198.79" x2="77.96" y2="203.68"/><line class="on" x1="68.79" y1="196.06" x2="67.24" y2="200.81"/><line class="on" x1="58.92" y1="192.27" x2="56.89" y2="196.84"/><line class="on maior" x1="49.50" y1="187.47" x2="45.00" y2="195.26"/><line class="on" x1="40.63" y1="181.71" x2="37.69" y2="185.76"/><line class="on" x1="32.42" y1="175.06" x2="29.07" y2="178.77"/><line class="on" x1="24.94" y1="167.58" x2="21.23" y2="170.93"/><line class="on" x1="18.29" y1="159.37" x2="14.24" y2="162.31"/><line class="on maior" x1="12.53" y1="150.50" x2="4.74" y2="155.00"/><line class="on" x1="7.73" y1="141.08" x2="3.16" y2="143.11"/><line class="on" x1="3.94" y1="131.21" x2="-0.81" y2="132.76"/><line class="on" x1="1.21" y1="121.00" x2="-3.68" y2="122.04"/><line class="on" x1="-0.45" y1="110.56" x2="-5.42" y2="111.08"/><line class="on maior" x1="-1.00" y1="100.00" x2="-10.00" y2="100.00"/><line class="on" x1="-0.45" y1="89.44" x2="-5.42" y2="88.92"/><line class="on" x1="1.21" y1="79.00" x2="-3.68" y2="77.96"/><line class="on" x1="3.94" y1="68.79" x2="-0.81" y2="67.24"/><line class="on" x1="7.73" y1="58.92" x2="3.16" y2="56.89"/><line class="on maior" x1="12.53" y1="49.50" x2="4.74" y2="45.00"/><line class="on" x1="18.29" y1="40.63" x2="14.24" y2="37.69"/><line class="on" x1="24.94" y1="32.42" x2="21.23" y2="29.07"/><line class="on" x1="32.42" y1="24.94" x2="29.07" y2="21.23"/><line class="on" x1="40.63" y1="18.29" x2="37.69" y2="14.24"/><line class="on maior" x1="49.50" y1="12.53" x2="45.00" y2="4.74"/><line class="on" x1="58.92" y1="7.73" x2="56.89" y2="3.16"/><line class="on" x1="68.79" y1="3.94" x2="67.24" y2="-0.81"/><line class="on" x1="79.00" y1="1.21" x2="77.96" y2="-3.68"/><line class="on" x1="89.44" y1="-0.45" x2="88.92" y2="-5.42"/><line class="on maior" x1="100.00" y1="-1.00" x2="100.00" y2="-10.00"/><line class="on" x1="110.56" y1="-0.45" x2="111.08" y2="-5.42"/><line class="on" x1="121.00" y1="1.21" x2="122.04" y2="-3.68"/><line class="on" x1="131.21" y1="3.94" x2="132.76" y2="-0.81"/><line class="on" x1="141.08" y1="7.73" x2="143.11" y2="3.16"/><line class="on maior" x1="150.50" y1="12.53" x2="155.00" y2="4.74"/><line class="on" x1="159.37" y1="18.29" x2="162.31" y2="14.24"/><line class="on" x1="167.58" y1="24.94" x2="170.93" y2="21.23"/><line class="on" x1="175.06" y1="32.42" x2="178.77" y2="29.07"/><line class="on" x1="181.71" y1="40.63" x2="185.76" y2="37.69"/><line class="on maior" x1="187.47" y1="49.50" x2="195.26" y2="45.00"/><line class="on" x1="192.27" y1="58.92" x2="196.84" y2="56.89"/><line class="on" x1="196.06" y1="68.79" x2="200.81" y2="67.24"/><line class="on" x1="198.79" y1="79.00" x2="203.68" y2="77.96"/><line class="on" x1="200.45" y1="89.44" x2="205.42" y2="88.92"/></g>
+                            <circle class="anel-miolo" cx="100" cy="100" r="80"></circle>
+                            <circle class="anel-trilho" cx="100" cy="100" r="90"></circle>
+                            <circle id="timerProgressFill" class="anel-progresso" cx="100" cy="100" r="90"></circle>
+                            <g id="timerKnob" class="anel-knob"><circle cx="190" cy="100" r="7.5"></circle></g>
+                        </svg>
+                        <div class="anel-texto">
+                            <div id="pomodoroEstado">Foco</div>
+                            <div id="pomodoroTimer" role="timer">25:00</div>
+                            <div id="pomodoroProximo">Depois: pausa de 5 min</div>
+                        </div>
+                    </div>
+
+                    <div id="pomodoroTarefa" class="pomodoro-tarefa oculto">
+                        <span class="pt-rotulo">Focando em</span>
+                        <strong id="pomodoroTarefaNome"></strong>
+                        <button type="button" id="btnLimparTarefa" aria-label="Tirar a tarefa do foco" title="Tirar do foco"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg></button>
+                    </div>
+
+                    <div class="pomodoro-ciclos">
+                        <div class="ciclos-pontos" id="pomodoroPontos" aria-hidden="true">
+                            <span></span><span></span><span></span><span></span>
+                        </div>
+                        <div id="pomodoroCiclosContador">Ciclos concluídos: 0 de 4</div>
+                        <div id="pomodoroHoje" class="pomodoro-hoje"></div>
+                    </div>
+
+                    <div class="pomodoro-controls">
+                        <button id="btnPomodoroIniciar" class="btn-pomodoro-play">
+                            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.5v13a1 1 0 0 0 1.5.86l10.5-6.5a1 1 0 0 0 0-1.72L9.5 4.64A1 1 0 0 0 8 5.5Z"/></svg>
+                            Iniciar
+                        </button>
+                        <button id="btnPomodoroPausar" class="btn-pomodoro-pause">
+                            <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="6" y="5" width="4" height="14" rx="1.2"/><rect x="14" y="5" width="4" height="14" rx="1.2"/></svg>
+                            Pausar
+                        </button>
+                        <button id="btnPomodoroParar" class="btn-pomodoro-stop">
+                            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12a8 8 0 1 0 2.6-5.9M4 4v4.5h4.5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                            Parar
+                        </button>
+                    </div>
+
+                    <div class="bloqueio-status" id="bloqueioStatus" data-estado="ausente">
+                        <span class="bs-ponto"></span>
+                        <span id="bloqueioTexto">Extensão de bloqueio não detectada</span>
+                        <button type="button" id="btnComoAtivar" class="link-btn">Ativar</button>
+                    </div>
+                    <p class="atalhos"><kbd>Espaço</kbd> inicia e pausa &nbsp;·&nbsp; <kbd>F</kbd> tela cheia</p>
+
+                    <details class="pomodoro-config">
+                        <summary>Configurações do Ciclo</summary>
+                        <div class="pomodoro-campos">
+                            <div class="pomodoro-campo">
+                                <label for="pomodoroTempoFoco">Foco</label>
+                                <div class="campo-min"><input type="number" id="pomodoroTempoFoco" value="25" min="15" max="60"><span>min</span></div>
+                            </div>
+                            <div class="pomodoro-campo">
+                                <label for="pomodoroTempoPausa">Pausa</label>
+                                <div class="campo-min"><input type="number" id="pomodoroTempoPausa" value="5" min="1" max="30"><span>min</span></div>
+                            </div>
+                            <div class="pomodoro-campo">
+                                <label for="pomodoroTempoPausaLonga">Pausa longa</label>
+                                <div class="campo-min"><input type="number" id="pomodoroTempoPausaLonga" value="15" min="1" max="30"><span>min</span></div>
+                            </div>
+                        </div>
+                        <div class="pomodoro-prefs">
+                            <label class="pomodoro-auto" for="prefPausarAoSair">
+                                <input type="checkbox" id="prefPausarAoSair" checked>
+                                <span>Pausar o ciclo ao sair da aba</span>
+                            </label>
+                            <label class="pomodoro-auto" for="prefSom">
+                                <input type="checkbox" id="prefSom" checked>
+                                <span>Tocar um som ao terminar o ciclo</span>
+                            </label>
+                            <label class="pomodoro-auto" for="prefBloquearRedes">
+                                <input type="checkbox" id="prefBloquearRedes" checked>
+                                <span>Bloquear redes sociais durante o foco</span>
+                            </label>
+                        </div>
+                        <label class="pomodoro-auto" for="pomodoroAutoStart">
+                            <input type="checkbox" id="pomodoroAutoStart">
+                            <span>Iniciar próximo ciclo automaticamente</span>
+                        </label>
+                    </details>
+                </div>
+            </div>
+
+            <div id="containerPerfil" class="oculto">
+                <div class="perfil">
+                    <button type="button" id="perfilVoltar" class="perfil-voltar"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M19 12H5M11 6l-6 6 6 6"/></svg>Voltar ao painel</button>
+
+                    <header class="perfil-cab">
+                        <div class="perfil-avatar-wrap">
+                            <div class="avatar avatar-xl" id="perfilAvatar">?</div>
+                            <button type="button" id="perfilAvatarBtn" class="perfil-avatar-btn" aria-label="Alterar foto de perfil" title="Alterar foto"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 8h3l2-3h6l2 3h3v11H4Z"/><circle cx="12" cy="13" r="3.5"/></svg></button>
+                        </div>
+                        <div class="perfil-id">
+                            <h2 id="perfilNome">Nome</h2>
+                            <p id="perfilEmailCab" class="perfil-email"></p>
+                            <p id="perfilMembro" class="perfil-sub"></p>
+                        </div>
+                    </header>
+
+                    <nav class="perfil-abas" role="tablist" aria-label="Seções da conta">
+                        <button type="button" role="tab" class="perfil-aba ativo" id="tab-geral" data-aba="geral" aria-controls="painel-geral" aria-selected="true">Visão geral</button>
+                        <button type="button" role="tab" class="perfil-aba" id="tab-dados" data-aba="dados" aria-controls="painel-dados" aria-selected="false" tabindex="-1">Dados pessoais</button>
+                        <button type="button" role="tab" class="perfil-aba" id="tab-seguranca" data-aba="seguranca" aria-controls="painel-seguranca" aria-selected="false" tabindex="-1">Segurança</button>
+                        <button type="button" role="tab" class="perfil-aba" id="tab-preferencias" data-aba="preferencias" aria-controls="painel-preferencias" aria-selected="false" tabindex="-1">Preferências</button>
+                        <button type="button" role="tab" class="perfil-aba" id="tab-privacidade" data-aba="privacidade" aria-controls="painel-privacidade" aria-selected="false" tabindex="-1">Privacidade e conta</button>
+                    </nav>
+
+                    <!-- VISÃO GERAL -->
+                    <section class="perfil-painel" id="painel-geral" data-aba="geral" role="tabpanel" aria-labelledby="tab-geral">
+                        <div class="perfil-cartao">
+                            <div class="perfil-cartao-topo">
+                                <h3>Informações da conta</h3>
+                                <button type="button" class="btn-primary" data-ir="dados">Editar perfil</button>
+                            </div>
+                            <dl class="perfil-lista" id="perfilResumo"></dl>
+                        </div>
+                        <div class="perfil-numeros" id="perfilNumeros"></div>
+                    </section>
+
+                    <!-- DADOS PESSOAIS -->
+                    <section class="perfil-painel oculto" id="painel-dados" data-aba="dados" role="tabpanel" aria-labelledby="tab-dados">
+                        <form class="perfil-cartao" id="formPerfil" novalidate>
+                            <div class="perfil-cartao-topo"><h3>Dados pessoais</h3></div>
+
+                            <div class="avatar-edit">
+                                <div class="avatar avatar-xl" id="perfAvatarPrev">?</div>
+                                <div class="avatar-edit-corpo">
+                                    <div class="avatar-edit-botoes">
+                                        <button type="button" class="btn-fantasma" id="perfEnviarFoto">Enviar foto</button>
+                                        <button type="button" class="btn-fantasma" id="perfRemoverFoto">Remover foto</button>
+                                    </div>
+                                    <div class="cores" id="perfCores" role="group" aria-label="Cor do avatar"></div>
+                                    <p class="campo-erro" id="perfFotoErro" role="alert"></p>
+                                    <input type="file" id="perfArquivo" accept="image/png,image/jpeg,image/webp,image/gif" hidden>
+                                </div>
+                            </div>
+
+                            <div class="perfil-grade">
+                                <div class="campo">
+                                <label for="perfNome">Nome completo</label>
+                                <div class="campo-caixa"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 3.6-7 8-7s8 3 8 7"/></svg><input type="text" id="perfNome" placeholder="Seu nome completo" autocomplete="name" maxlength="60"></div>
+                                <p class="campo-erro" id="perfNomeErro" role="alert"></p>
+                            </div>
+                                <div class="campo">
+                                <label for="perfUsuario">Nome de usuário</label>
+                                <div class="campo-caixa"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M16 8v5a3 3 0 0 0 6 0v-1a10 10 0 1 0-4 8"/></svg><input type="text" id="perfUsuario" placeholder="seu.usuario" autocomplete="username" maxlength="20"></div>
+                                <p class="campo-erro" id="perfUsuarioErro" role="alert"></p>
+                            </div>
+                                <div class="campo">
+                                <label for="perfEmail">E-mail</label>
+                                <div class="campo-caixa"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg><input type="text" id="perfEmail" placeholder="voce@exemplo.com" autocomplete="email" ></div>
+                                <p class="campo-erro" id="perfEmailErro" role="alert"></p>
+                            </div>
+                                <div class="campo">
+                                <label for="perfTelefone">Telefone (opcional)</label>
+                                <div class="campo-caixa"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2Z"/></svg><input type="text" id="perfTelefone" placeholder="(11) 91234-5678" autocomplete="tel" maxlength="15" inputmode="tel"></div>
+                                <p class="campo-erro" id="perfTelefoneErro" role="alert"></p>
+                            </div>
+                            </div>
+
+                            <div id="perfSenhaGrupo" class="perfil-confirma oculto">
+                                <p class="perfil-aviso">Você está alterando o e-mail ou o nome de usuário, que servem para entrar na conta. Confirme com a sua senha atual.</p>
+                                <div class="campo">
+                                <label for="perfSenhaConfirma">Senha atual</label>
+                                <div class="campo-caixa"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="10" width="16" height="11" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg><input type="password" id="perfSenhaConfirma" placeholder="Sua senha atual" autocomplete="current-password" ><button type="button" class="btn-olho" data-alvo="perfSenhaConfirma" aria-label="Mostrar senha"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12Z"/><circle cx="12" cy="12" r="3"/></svg></button></div>
+                                <p class="campo-erro" id="perfSenhaConfirmaErro" role="alert"></p>
+                            </div>
+                            </div>
+
+                            <p class="auth-erro" id="perfFormErro" role="alert"></p>
+                            <div class="perfil-acoes">
+                                <button type="button" class="btn-fantasma" id="perfDescartar" disabled>Descartar</button>
+                                <button type="submit" class="btn-primary" id="perfSalvar" disabled><span>Salvar alterações</span></button>
+                            </div>
+                        </form>
+                    </section>
+
+                    <!-- SEGURANÇA -->
+                    <section class="perfil-painel oculto" id="painel-seguranca" data-aba="seguranca" role="tabpanel" aria-labelledby="tab-seguranca">
+                        <form class="perfil-cartao" id="formSenha" novalidate>
+                            <div class="perfil-cartao-topo"><h3>Alterar senha</h3></div>
+                            <div class="campo">
+                                <label for="senhaAtual">Senha atual</label>
+                                <div class="campo-caixa"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="10" width="16" height="11" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg><input type="password" id="senhaAtual" placeholder="Sua senha atual" autocomplete="current-password" ><button type="button" class="btn-olho" data-alvo="senhaAtual" aria-label="Mostrar senha"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12Z"/><circle cx="12" cy="12" r="3"/></svg></button></div>
+                                <p class="campo-erro" id="senhaAtualErro" role="alert"></p>
+                            </div>
+                            <div class="campo">
+                                <label for="senhaNova">Nova senha</label>
+                                <div class="campo-caixa"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="10" width="16" height="11" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg><input type="password" id="senhaNova" placeholder="Mínimo de 6 caracteres" autocomplete="new-password" ><button type="button" class="btn-olho" data-alvo="senhaNova" aria-label="Mostrar senha"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12Z"/><circle cx="12" cy="12" r="3"/></svg></button></div>
+                                <p class="campo-erro" id="senhaNovaErro" role="alert"></p>
+                            </div>
+                            <div class="forca" id="forcaNova" aria-hidden="true"><span></span><span></span><span></span><span></span><em id="forcaNovaTexto"></em></div>
+                            <div class="campo">
+                                <label for="senhaConf">Confirmar nova senha</label>
+                                <div class="campo-caixa"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="10" width="16" height="11" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg><input type="password" id="senhaConf" placeholder="Repita a nova senha" autocomplete="new-password" ><button type="button" class="btn-olho" data-alvo="senhaConf" aria-label="Mostrar senha"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12Z"/><circle cx="12" cy="12" r="3"/></svg></button></div>
+                                <p class="campo-erro" id="senhaConfErro" role="alert"></p>
+                            </div>
+                            <ul class="requisitos" id="requisitosSenha" aria-label="Requisitos da senha">
+                                <li data-req="min">Pelo menos 6 caracteres <b>(obrigatório)</b></li>
+                                <li data-req="dif">Diferente da senha atual <b>(obrigatório)</b></li>
+                                <li data-req="conf">Confirmação igual à nova senha <b>(obrigatório)</b></li>
+                                <li data-req="dez">10 ou mais caracteres <b>(recomendado)</b></li>
+                                <li data-req="mm">Letras maiúsculas e minúsculas <b>(recomendado)</b></li>
+                                <li data-req="num">Pelo menos um número <b>(recomendado)</b></li>
+                                <li data-req="sim">Pelo menos um símbolo <b>(recomendado)</b></li>
+                            </ul>
+                            <p class="auth-erro" id="senhaFormErro" role="alert"></p>
+                            <div class="perfil-acoes">
+                                <button type="submit" class="btn-primary" id="senhaSalvar"><span>Alterar senha</span></button>
+                            </div>
+                        </form>
+
+                        <div class="perfil-cartao">
+                            <div class="perfil-cartao-topo"><h3>Sessão neste aparelho</h3></div>
+                            <p class="perfil-texto" id="sessaoTexto"></p>
+                            <div class="perfil-acoes esquerda">
+                                <button type="button" class="btn-fantasma" id="perfSairSessao"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4M16 17l5-5-5-5M21 12H9"/></svg>Encerrar sessão</button>
+                            </div>
+                            <p class="perfil-aviso">Recuperação de senha por e-mail, verificação de e-mail, autenticação em dois fatores e lista de dispositivos conectados dependem de um servidor, que este projeto ainda não tem. Eles não aparecem aqui para não prometer o que não funciona.</p>
+                        </div>
+                    </section>
+
+                    <!-- PREFERÊNCIAS -->
+                    <section class="perfil-painel oculto" id="painel-preferencias" data-aba="preferencias" role="tabpanel" aria-labelledby="tab-preferencias">
+                        <div class="perfil-cartao">
+                            <div class="perfil-cartao-topo"><h3>Aparência</h3></div>
+                            <div class="segmentado neutro" role="radiogroup" aria-label="Tema">
+                                <input type="radio" name="perfTema" id="perfTemaClaro" value="claro"><label for="perfTemaClaro">Claro</label>
+                                <input type="radio" name="perfTema" id="perfTemaNoturno" value="noturno"><label for="perfTemaNoturno">Noturno</label>
+                            </div>
+                        </div>
+                        <div class="perfil-cartao">
+                            <div class="perfil-cartao-topo"><h3>Foco e Pomodoro</h3></div>
+                            <div class="perfil-prefs">
+                                <label class="pomodoro-auto" for="perfPrefSom"><input type="checkbox" id="perfPrefSom"><span>Tocar um som ao terminar o ciclo</span></label>
+                                <label class="pomodoro-auto" for="perfPrefPausar"><input type="checkbox" id="perfPrefPausar"><span>Pausar o ciclo ao sair da aba</span></label>
+                                <label class="pomodoro-auto" for="perfPrefBloquear"><input type="checkbox" id="perfPrefBloquear"><span>Bloquear redes sociais durante o foco (requer a extensão)</span></label>
+                            </div>
+                            <div class="perfil-acoes esquerda">
+                                <button type="button" class="btn-fantasma" id="perfIrPomodoro">Ajustar os tempos do ciclo</button>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- PRIVACIDADE E CONTA -->
+                    <section class="perfil-painel oculto" id="painel-privacidade" data-aba="privacidade" role="tabpanel" aria-labelledby="tab-privacidade">
+                        <div class="perfil-cartao">
+                            <div class="perfil-cartao-topo"><h3>Dados armazenados</h3></div>
+                            <dl class="perfil-lista" id="perfilDados"></dl>
+                            <div class="perfil-acoes esquerda">
+                                <button type="button" class="btn-fantasma" id="perfExportar"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v11M7 11l5 5 5-5M5 20h14"/></svg>Baixar meus dados (JSON)</button>
+                            </div>
+                            <p class="perfil-aviso">Seus dados ficam somente neste navegador. O FocusMe não envia informações da sua conta a nenhum servidor, e a senha é guardada apenas como hash com salt.</p>
+                        </div>
+
+                        <form class="perfil-cartao perigo" id="formExcluir" novalidate>
+                            <div class="perfil-cartao-topo"><h3>Excluir conta</h3></div>
+                            <p class="perfil-texto">Apaga definitivamente o seu perfil, as suas tarefas, o histórico de foco, as distrações registradas e as preferências deste navegador. Não há como desfazer. Baixe os seus dados antes, se quiser guardá-los.</p>
+                            <div class="campo">
+                                <label for="excluirSenha">Confirme com a sua senha</label>
+                                <div class="campo-caixa"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="10" width="16" height="11" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg><input type="password" id="excluirSenha" placeholder="Sua senha atual" autocomplete="current-password" ><button type="button" class="btn-olho" data-alvo="excluirSenha" aria-label="Mostrar senha"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12Z"/><circle cx="12" cy="12" r="3"/></svg></button></div>
+                                <p class="campo-erro" id="excluirSenhaErro" role="alert"></p>
+                            </div>
+                            <div class="perfil-acoes">
+                                <button type="submit" class="btn-primary perigo" id="excluirBtn"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M10 11v6M14 11v6M6 7l1 13h10l1-13M9 7V4h6v3"/></svg><span>Excluir minha conta</span></button>
+                            </div>
+                        </form>
+                    </section>
+                </div>
+            </div>
+
+            <div id="containerEstatisticas" class="oculto">
+                <div class="estatisticas-box">
+
+                    <div class="ranking-card">
+                        <div class="ranking-gauge" id="rankingGauge">
+                            <svg viewBox="0 0 200 200" aria-hidden="true">
+                                <circle class="gauge-trilho" cx="100" cy="100" r="88"></circle>
+                                <circle id="rankingAnel" class="gauge-anel" cx="100" cy="100" r="88"></circle>
+                            </svg>
+                            <div id="rankingValor" class="ranking-valor">0%</div>
+                        </div>
+                        <div class="ranking-info">
+                            <h2>Seu Ranking Atual</h2>
+                            <div id="rankingNivel" class="ranking-nivel rank-aquecendo">Aquecendo</div>
+                            <p id="rankingDescricao" class="ranking-descricao">Conclusão nos últimos 30 dias (0 de 0 tarefas)</p>
+                        </div>
+                    </div>
+
+                    <ol class="ranking-escada" id="rankingEscada" aria-label="Níveis do ranking"></ol>
+
+                    <div class="stat-tiles">
+                        <div class="stat-tile"><strong id="statTotal">0</strong><span>Tarefas criadas</span></div>
+                        <div class="stat-tile"><strong id="statConcluidas">0</strong><span>Concluídas</span></div>
+                        <div class="stat-tile"><strong id="statPendentes">0</strong><span>Pendentes</span></div>
+                        <div class="stat-tile"><strong id="statMelhor">–</strong><span>Melhor semana</span></div>
+                    </div>
+
+                    <div class="foco-card">
+                        <div class="foco-card-topo">
+                            <h3>Foco &amp; Distrações</h3>
+                            <span>Últimos 7 dias</span>
+                        </div>
+                        <div class="foco-tiles">
+                            <div><strong id="statFocoHoje" data-v="0">0 min</strong><span>Foco hoje</span></div>
+                            <div><strong id="statCiclosFoco" data-v="0">0</strong><span>Ciclos de foco</span></div>
+                            <div><strong id="statDistracoes" data-v="0">0</strong><span>Distrações hoje</span></div>
+                            <div><strong id="statBarrados">–</strong><span>Acessos barrados</span></div>
+                        </div>
+                        <div id="focoGrafico" class="semanas-grafico foco-grafico" aria-hidden="true"></div>
+                        <p class="foco-legenda"><i class="l-foco"></i>Minutos de foco<i class="l-dist"></i>Distrações</p>
+                    </div>
+
+                    <div class="streak-card">
+                        <h3>Histórico de Conclusão Semanal</h3>
+                        <div id="semanasGrafico" class="semanas-grafico" aria-hidden="true"></div>
+                        <div id="listaSemanas" class="lista-semanas"></div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- ===================== MODAL DE TAREFA ===================== -->
+    <div id="modalTarefa" class="modal oculto">
+        <div class="modal-content" role="dialog" aria-modal="true" aria-labelledby="tituloModalTarefa">
+            <button id="fecharModal" class="close" type="button" aria-label="Fechar"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg></button>
+            <h2 id="tituloModalTarefa">Nova Tarefa</h2>
+            <form id="formTarefa">
+                <div class="form-group">
+                    <label for="titulo">Título</label>
+                    <input type="text" id="titulo" required placeholder="Ex: Estudar Banco de Dados">
+                </div>
+                <div class="form-group">
+                    <label for="descricao">Descrição (Opcional)</label>
+                    <textarea id="descricao" rows="3" placeholder="Detalhes da tarefa..."></textarea>
+                </div>
+                <div class="form-grid-duo">
+                    <div class="form-group">
+                        <label for="data">Data de Entrega</label>
+                        <input type="date" id="data">
+                    </div>
+                    <div class="form-group">
+                        <label for="horario">Horário</label>
+                        <input type="time" id="horario">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <span class="rotulo">Prioridade</span>
+                    <div class="segmentado" role="radiogroup" aria-label="Prioridade">
+                        <input type="radio" name="prioridade" id="prioBaixa" value="baixa" checked><label for="prioBaixa" class="prio-baixa">Baixa</label>
+                        <input type="radio" name="prioridade" id="prioMedia" value="media"><label for="prioMedia" class="prio-media">Média</label>
+                        <input type="radio" name="prioridade" id="prioAlta" value="alta"><label for="prioAlta" class="prio-alta">Alta</label>
+                    </div>
+                </div>
+
+                <div class="form-group subtask-section">
+                    <span class="rotulo">Subtarefas</span>
+                    <div id="lista-subtarefas"></div>
+                    <p id="avisoSubtarefa" class="oculto aviso-limite">Limite máximo de 10 subtarefas atingido.</p>
+                    <button type="button" id="btn-adicionar-subtask" class="btn-adicionar-subtask"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>Adicionar</button>
+                </div>
+
+                <button type="submit" class="btn-success">Salvar Tarefa</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- ===================== MODO FOCO (TELA CHEIA) ===================== -->
+    <div id="modoFoco" class="modo-foco estado-foco oculto" role="dialog" aria-modal="true" aria-label="Modo foco em tela cheia">
+        <div class="mf-grade" aria-hidden="true"></div>
+        <div class="mf-lente lente-marca" aria-hidden="true"></div>
+        <header class="mf-topo">
+            <img src="img/logo_focusME_1.PNG" alt="FocusMe" class="mf-logo">
+            <button type="button" id="mfSair" class="mf-sair">Sair do modo foco <kbd>Esc</kbd></button>
+        </header>
+        <main class="mf-centro">
+            <span class="mf-fase" id="mfFase">Foco</span>
+            <span class="mf-tarefa oculto" id="mfTarefa"></span>
+            <div class="pomodoro-anel mf-anel" id="mfAnel">
+                <div class="anel-lente" aria-hidden="true"></div>
+                <div class="anel-texto">
+                    <div class="mf-tempo" id="mfTempo">25:00</div>
+                    <div class="mf-proximo" id="mfProximo"></div>
+                </div>
+            </div>
+            <div class="mf-pontos" id="mfPontos" aria-hidden="true"><span></span><span></span><span></span><span></span></div>
+            <div class="mf-controles">
+                <button type="button" id="mfToggle" class="mf-principal">Iniciar</button>
+                <button type="button" id="mfParar" class="mf-secundario">Parar</button>
+            </div>
+        </main>
+        <footer class="mf-rodape">
+            <span class="mf-chip" id="mfBloqueio" data-estado="ausente"><i></i><span id="mfBloqueioTexto">Extensão de bloqueio não detectada</span></span>
+            <span class="mf-chip" id="mfHoje"><i></i><span id="mfHojeTexto">Hoje: sem distrações</span></span>
+        </footer>
+    </div>
+
+    <!-- ===================== COMO ATIVAR O BLOQUEIO ===================== -->
+    <div id="modalBloqueio" class="modal oculto">
+        <div class="modal-content" role="dialog" aria-modal="true" aria-labelledby="tituloBloqueio">
+            <button id="fecharBloqueio" class="close" type="button" aria-label="Fechar"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg></button>
+            <h2 id="tituloBloqueio">Bloqueio de redes sociais</h2>
+            <p class="ajuda-texto">Com a extensão do FocusMe instalada, Instagram, TikTok, YouTube e outros sites ficam bloqueados enquanto o foco estiver rodando e são liberados nas pausas. Funciona no Chrome e no Edge, no computador.</p>
+            <ol class="passos">
+                <li><span>Baixe a extensão e descompacte o arquivo.</span><a class="btn-primary" href="extensao-chrome.zip" download>Baixar extensão</a></li>
+                <li><span>Abra <b>chrome://extensions</b> (no Edge, <b>edge://extensions</b>) e ligue o <b>Modo do desenvolvedor</b>.</span></li>
+                <li><span>Clique em <b>Carregar sem compactação</b> e escolha a pasta <b>extensao-chrome</b>.</span></li>
+                <li><span>Volte aqui e recarregue a página. O aviso do cartão fica verde quando estiver conectado.</span></li>
+            </ol>
+            <p class="ajuda-nota">Abrindo o FocusMe direto do computador (endereço que começa com <b>file://</b>)? Nos detalhes da extensão, ligue <b>“Permitir acesso a URLs de arquivo”</b>. Para escolher quais sites bloquear, clique no ícone da extensão.</p>
+        </div>
+    </div>
+
+    <!-- ===================== PALETA DE COMANDOS ===================== -->
+    <div id="paleta" class="paleta oculto">
+        <div class="paleta-caixa" role="dialog" aria-modal="true" aria-label="Paleta de comandos">
+            <div class="paleta-busca">
+                <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+                <input type="text" id="paletaInput" placeholder="Digite um comando ou busque uma tarefa…" autocomplete="off" aria-label="Buscar comando ou tarefa" aria-controls="paletaLista">
+                <kbd>Esc</kbd>
+            </div>
+            <ul id="paletaLista" class="paleta-lista" role="listbox"></ul>
+            <div class="paleta-rodape"><span><kbd>↑</kbd><kbd>↓</kbd> navegar</span><span><kbd>Enter</kbd> executar</span><span><kbd>Esc</kbd> fechar</span></div>
+        </div>
+    </div>
+
+    <!-- ===================== DIÁLOGO DE CONFIRMAÇÃO ===================== -->
+    <div id="dialogo" class="modal oculto">
+        <div class="modal-content dialogo-content" role="alertdialog" aria-modal="true" aria-labelledby="dialogoTitulo" aria-describedby="dialogoTexto">
+            <h2 id="dialogoTitulo">Confirmar</h2>
+            <p id="dialogoTexto"></p>
+            <div id="dialogoDigitar" class="oculto">
+                <label for="dialogoInput" id="dialogoInputRotulo"></label>
+                <input type="text" id="dialogoInput" autocomplete="off">
+            </div>
+            <div class="dialogo-acoes">
+                <button type="button" id="dialogoCancelar" class="btn-fantasma">Cancelar</button>
+                <button type="button" id="dialogoConfirmar" class="btn-primary">Confirmar</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="confete" class="confete" aria-hidden="true"></div>
+    <div id="toasts" class="toasts" aria-live="polite"></div>
+
+    <script src="js/script.js"></script>
+</body>
+</html>

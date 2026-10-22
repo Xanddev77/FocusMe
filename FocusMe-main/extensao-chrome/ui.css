@@ -1,0 +1,34 @@
+/* Estilos compartilhados da extensão (popup, opções e página de bloqueio) */
+:root {
+    --abismo: #04202e;
+    --sidebar: #07354a;
+    --oceano: #0c5c7e;
+    --lente: #3695BD;
+    --luz: #7fd3f0;
+    --verde: #4be0b0;
+    --texto: #14232b;
+    --texto-2: #5b717d;
+    --borda: #dbe6ec;
+    --fundo: #eef4f7;
+    --fonte-titulo: 'Montserrat', 'Segoe UI', system-ui, sans-serif;
+    --fonte-texto: 'Figtree', 'Segoe UI', system-ui, -apple-system, sans-serif;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; font-family: var(--fonte-texto); }
+button { font-family: inherit; cursor: pointer; }
+.lente-marca {
+    width: var(--lente-tam);
+    aspect-ratio: 260 / 265;
+    background-image: url('assets/logo.png');
+    background-repeat: no-repeat;
+    background-size: calc(var(--lente-tam) * 3.577) auto;
+    background-position: calc(var(--lente-tam) * -0.2115) calc(var(--lente-tam) * -0.3269);
+    pointer-events: none;
+}
+.switch { position: relative; display: inline-block; width: 42px; height: 24px; flex-shrink: 0; }
+.switch input { position: absolute; inset: 0; opacity: 0; width: 100%; height: 100%; margin: 0; cursor: pointer; z-index: 1; }
+.switch span { position: absolute; inset: 0; border-radius: 12px; background: rgba(255, 255, 255, 0.22); transition: background 0.2s; }
+.switch span::before { content: ""; position: absolute; top: 3px; left: 3px; width: 18px; height: 18px; border-radius: 50%; background: #fff; box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3); transition: transform 0.2s; }
+.switch input:checked + span { background: var(--verde); }
+.switch input:checked + span::before { transform: translateX(18px); }
+.switch input:focus-visible + span { outline: 3px solid var(--luz); outline-offset: 2px; }
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; animation: none !important; } }

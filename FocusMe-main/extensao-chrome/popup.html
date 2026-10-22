@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>FocusMe</title>
+    <link rel="stylesheet" href="ui.css">
+    <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+    <header class="topo">
+        <div class="topo-lente lente-marca" style="--lente-tam: 150px" aria-hidden="true"></div>
+        <img class="logo" src="assets/logo.png" alt="FocusMe">
+        <label class="liga" title="Ativar ou desativar o bloqueio">
+            <span id="ligaTexto">Ativada</span>
+            <span class="switch"><input type="checkbox" id="ativada" aria-label="Ativar bloqueio"><span></span></span>
+        </label>
+    </header>
+
+    <main>
+        <section class="estado" id="estado" data-estado="livre">
+            <div class="estado-ponto"></div>
+            <div class="estado-info">
+                <strong id="estadoTitulo">Redes liberadas</strong>
+                <span id="estadoTexto">O bloqueio começa quando o foco iniciar.</span>
+            </div>
+            <div class="estado-tempo" id="estadoTempo"></div>
+        </section>
+
+        <section class="numeros">
+            <div><b id="nSites">0</b><span>sites na lista</span></div>
+            <div><b id="nTentativas">0</b><span>acessos barrados hoje</span></div>
+        </section>
+
+        <section class="chips" id="chips" aria-label="Sites bloqueados"></section>
+
+        <footer>
+            <button id="btnApp" class="primario">Abrir o FocusMe</button>
+            <button id="btnConfig" class="fantasma">Sites</button>
+        </footer>
+    </main>
+    <script src="popup.js"></script>
+</body>
+</html>

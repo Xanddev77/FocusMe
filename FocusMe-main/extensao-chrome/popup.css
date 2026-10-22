@@ -1,0 +1,33 @@
+html { width: 340px; }
+body { width: 340px; background: var(--fundo); color: var(--texto); }
+.topo { position: relative; overflow: hidden; display: flex; align-items: center; justify-content: space-between; padding: 16px 18px; background: var(--oceano); color: #fff; }
+.topo-lente { position: absolute; right: -40px; top: -60px; opacity: 0.1; }
+.logo { position: relative; height: 34px; width: auto; margin-left: -6px; }
+.liga { position: relative; display: flex; align-items: center; gap: 10px; font-size: 0.78rem; font-weight: 700; color: #cde6f1; cursor: pointer; }
+main { display: grid; gap: 12px; padding: 14px; }
+
+.estado { display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 12px; padding: 14px 16px; border: 1px solid var(--borda); border-radius: 16px; background: #fff; }
+.estado-ponto { width: 12px; height: 12px; border-radius: 50%; background: #9db3bf; }
+.estado[data-estado="ativo"] .estado-ponto { background: var(--verde); box-shadow: 0 0 0 0 rgba(75, 224, 176, 0.6); animation: pulso 1.8s infinite; }
+.estado[data-estado="pronto"] .estado-ponto { background: var(--lente); }
+.estado[data-estado="off"] .estado-ponto { background: #e5484d; }
+@keyframes pulso { 0% { box-shadow: 0 0 0 0 rgba(75, 224, 176, 0.6); } 100% { box-shadow: 0 0 0 10px rgba(75, 224, 176, 0); } }
+.estado-info { display: grid; gap: 2px; min-width: 0; }
+.estado-info strong { font-family: var(--fonte-titulo); font-size: 0.98rem; font-weight: 800; }
+.estado-info span { color: var(--texto-2); font-size: 0.78rem; line-height: 1.35; }
+.estado-tempo { font-family: var(--fonte-titulo); font-weight: 800; font-size: 1.25rem; font-variant-numeric: tabular-nums; color: var(--oceano); }
+
+.numeros { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.numeros div { display: grid; gap: 2px; padding: 12px 14px; border: 1px solid var(--borda); border-radius: 14px; background: #fff; }
+.numeros b { font-family: var(--fonte-titulo); font-size: 1.5rem; font-weight: 800; letter-spacing: -0.02em; }
+.numeros span { color: var(--texto-2); font-size: 0.74rem; font-weight: 600; }
+
+.chips { display: flex; flex-wrap: wrap; gap: 6px; }
+.chips span { padding: 4px 10px; border-radius: 999px; background: #fff; border: 1px solid var(--borda); color: var(--texto-2); font-size: 0.74rem; font-weight: 700; }
+
+footer { display: grid; grid-template-columns: 1fr auto; gap: 8px; }
+footer button { padding: 11px 16px; border-radius: 12px; font-size: 0.86rem; font-weight: 700; }
+.primario { border: none; background: var(--oceano); color: #fff; }
+.primario:hover { background: #094a65; }
+.fantasma { border: 1.5px solid var(--borda); background: transparent; color: var(--texto); }
+.fantasma:hover { background: #fff; }

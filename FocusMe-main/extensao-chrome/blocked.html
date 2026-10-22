@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Foco travado — FocusMe</title>
+    <link rel="icon" href="icons/icon32.png">
+    <link rel="stylesheet" href="ui.css">
+    <link rel="stylesheet" href="blocked.css">
+</head>
+<body>
+    <div class="grade" aria-hidden="true"></div>
+    <div class="marca lente-marca" style="--lente-tam: min(95vw, 820px)" aria-hidden="true"></div>
+
+    <header><img src="assets/logo.png" alt="FocusMe" class="logo"></header>
+
+    <main id="principal">
+        <div class="enquadramento">
+            <span class="canto c1"></span><span class="canto c2"></span><span class="canto c3"></span><span class="canto c4"></span>
+            <span class="af"><i></i><b id="afTexto">Foco travado</b></span>
+            <p class="site" id="siteNome">este site</p>
+            <h1 id="titulo">espera o seu foco terminar.</h1>
+            <p class="frase" id="frase"></p>
+
+            <div class="contagem" id="contagem">
+                <span class="rotulo" id="contagemRotulo">Seu foco termina em</span>
+                <span class="tempo" id="contagemTempo">--:--</span>
+            </div>
+
+            <div class="acoes">
+                <button id="btnVoltar" class="primario">Voltar ao FocusMe</button>
+                <button id="btnLista" class="fantasma">Sites bloqueados</button>
+            </div>
+        </div>
+    </main>
+
+    <footer id="rodape"></footer>
+    <script src="blocked.js"></script>
+</body>
+</html>
